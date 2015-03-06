@@ -12,7 +12,7 @@ Add-CIStep -Name "YOUR-CISTEP-NAME" -PackageId "InvokeVSTestConsole"
 
 #####IncludeDllPath
 A String[] representing included .dll file paths. Either literal or wildcard paths are supported; default is all .dlls 
-within your project root dir @ any depth containing `test` in their name not within a `packages` directory (case insensitive)
+within your project root dir @ any depth containing `test` in their name not within a `packages` or `bin` directory (case insensitive)
 ```PowerShell
 [String[]]
 [Parameter(
