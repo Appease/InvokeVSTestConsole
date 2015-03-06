@@ -1,0 +1,3 @@
+*.nupkg
+.PoshCI/Packages/
+.PoshCI/Temp/
