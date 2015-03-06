@@ -15,11 +15,9 @@ A String[] representing included .dll file paths. Either literal or wildcard pat
 within your project root dir @ any depth containing `test` in their name not within a `packages` directory (case insensitive)
 ```PowerShell
 [String[]]
-[ValidateCount(1,[Int]::MaxValue)]
 [Parameter(
-    Mandatory=$true,
     ValueFromPipelineByPropertyName = $true)]
-$IncludeDllPath
+$IncludeDllPath = @(gci -Path $PoshCIProjectRootDirPath -File -Recurse -Filter '*test*.dll' | ?{$_.FullName -notmatch '.*[/\\]packages|obj[/\\].*'} | %{$_.FullName})
 ```
 
 #####ExcludeDllNameLike
