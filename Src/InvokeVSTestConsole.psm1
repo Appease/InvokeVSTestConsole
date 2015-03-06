@@ -13,7 +13,7 @@ $PoshCIProjectRootDirPath,
 [String[]]
 [Parameter(
     ValueFromPipelineByPropertyName = $true)]
-$IncludeDllPath = @(gci -Path $PoshCIProjectRootDirPath -File -Recurse -Filter '*test*.dll' | ?{$_.FullName -notmatch '.*[/\\]packages|obj[/\\].*'} | %{$_.FullName}),
+$IncludeDllPath = @(gci -Path $PoshCIProjectRootDirPath -File -Recurse -Filter '*test*.dll' | ?{$_.FullName -notmatch '.*[/\\]packages|obj[/\\].*'}),
 
 [String[]]
 [Parameter(
