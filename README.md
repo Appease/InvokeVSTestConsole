@@ -15,9 +15,10 @@ A String[] representing included .dll file paths. Either literal or wildcard pat
 within your project root dir @ any depth containing `test` in their name not within a `packages` or `bin` directory (case insensitive)
 ```PowerShell
 [String[]]
+[ValidateCount(1,[Int]::MaxValue)]
 [Parameter(
     ValueFromPipelineByPropertyName = $true)]
-$IncludeDllPath = @(gci -Path $PoshCIProjectRootDirPath -File -Recurse -Filter '*test*.dll' | ?{$_.FullName -notmatch '.*[/\\]packages|obj[/\\].*'} | %{$_.FullName})
+$IncludeDllPath = @(gci -Path $PoshCIProjectRootDirPath -File -Recurse -Filter '*test*.dll' | ?{$_.FullName -notmatch '.*[/\\]packages|obj[/\\].*'}|%{$_.FullName})
 ```
 
 #####ExcludeDllNameLike
@@ -60,6 +61,7 @@ $Logger
 A String representing the path to VSTest.Console.exe
 ```PowerShell
 [String]
+[ValidateNotNullOrEmpty()]
 [Parameter(
     ValueFromPipelineByPropertyName=$true)]
 $PathToVSTestConsoleExe = 'C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe'

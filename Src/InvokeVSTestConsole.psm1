@@ -11,16 +11,17 @@ function Invoke-CIStep(
 $PoshCIProjectRootDirPath,
 
 [String[]]
+[ValidateCount(1,[Int]::MaxValue)]
 [Parameter(
     ValueFromPipelineByPropertyName = $true)]
-$IncludeDllPath = @(gci -Path $PoshCIProjectRootDirPath -File -Recurse -Filter '*test*.dll' | ?{$_.FullName -notmatch '.*[/\\]packages|obj[/\\].*'}),
+$IncludeDllPath = @(gci -Path $PoshCIProjectRootDirPath -File -Recurse -Filter '*test*.dll' | ?{$_.FullName -notmatch '.*[/\\]packages|obj[/\\].*'}|%{$_.FullName}),
 
 [String[]]
 [Parameter(
     ValueFromPipelineByPropertyName = $true)]
 $ExcludeDllNameLike,
 
-[switch]
+[Switch]
 [Parameter(
     ValueFromPipelineByPropertyName = $true)]
 $Recurse,
@@ -36,6 +37,7 @@ $TestCaseFilter,
 $Logger,
 
 [String]
+[ValidateNotNullOrEmpty()]
 [Parameter(
     ValueFromPipelineByPropertyName=$true)]
 $PathToVSTestConsoleExe = 'C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe'){
