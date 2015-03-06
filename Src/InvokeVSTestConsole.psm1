@@ -1,5 +1,5 @@
 # halt immediately on any errors which occur in this module
-$ErrorActionPreference = 'continue'
+$ErrorActionPreference = 'stop'
 
 function Invoke-CIStep(
 
@@ -32,6 +32,11 @@ $TestCaseFilter,
 
 [String]
 [Parameter(
+    ValueFromPipelineByPropertyName = $true)]
+$Logger,
+
+[String]
+[Parameter(
     ValueFromPipelineByPropertyName=$true)]
 $PathToVSTestConsoleExe = 'C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe'){
 
@@ -44,12 +49,15 @@ Write-Debug `
 $($DllPaths | Out-String)
 "@
 
-    $vsTestConsoleParameters = $DllPaths
-    $vsTestConsoleParameters += '/InIsolation'
+    $vsTestConsoleParameters = @($DllPaths, '/InIsolation')
 
     if($TestCaseFilter){
-            $vsTestConsoleParameters = $vsTestConsoleParameters + @('/TestCaseFilter',$TestCaseFilter)
-        }
+            $vsTestConsoleParameters += @('/TestCaseFilter', $TestCaseFilter)
+    }
+
+    if($Logger){
+        $vsTestConsoleParameters += @('/Logger', $Logger)
+    }
 
 Write-Debug `
 @"

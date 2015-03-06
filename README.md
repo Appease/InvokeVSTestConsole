@@ -49,6 +49,15 @@ A String representing the `/TestCaseFilter` option of VSTest.Console.exe
 $TestCaseFilter
 ```
 
+#####Logger
+A String representing the `/Logger` option of VSTest.Console.exe
+```PowerShell
+[String]
+[Parameter(
+    ValueFromPipelineByPropertyName = $true)]
+$Logger
+```
+
 #####PathToVSTestConsoleExe
 A String representing the path to VSTest.Console.exe
 ```PowerShell
