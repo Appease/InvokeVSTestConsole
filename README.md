@@ -12,14 +12,12 @@ Add-CIStep -Name "YOUR-CISTEP-NAME" -PackageId "InvokeVSTestConsole"
 
 #####IncludeDllPath
 A String[] representing included .dll file paths. Either literal or wildcard paths are supported; default is all .dlls 
-within your project root dir @ any depth containing `test` in their name not within a `packages` directory (case insensitive)
+within your project root dir @ any depth containing `test` in their name not within a `packages` or `bin` directory (case insensitive)
 ```PowerShell
 [String[]]
-[ValidateCount(1,[Int]::MaxValue)]
 [Parameter(
-    Mandatory=$true,
     ValueFromPipelineByPropertyName = $true)]
-$IncludeDllPath
+$IncludeDllPath = @(gci -Path $PoshCIProjectRootDirPath -File -Recurse -Filter '*test*.dll' | ?{$_.FullName -notmatch '.*[/\\]packages|obj[/\\].*'} | %{$_.FullName})
 ```
 
 #####ExcludeDllNameLike
@@ -68,5 +66,5 @@ $PathToVSTestConsoleExe = 'C:\Program Files (x86)\Microsoft Visual Studio 14.0\C
 ```
 
 ####What's the build status?
-![](https://ci.appveyor.com/api/projects/status/rcevsilgkskrk9wi?svg=true)
+![](https://ci.appveyor.com/api/projects/status/81pqdw3vjerogopc?svg=true)
 
