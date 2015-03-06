@@ -1,18 +1,24 @@
 # halt immediately on any errors which occur in this module
-$ErrorActionPreference = 'Stop'
+$ErrorActionPreference = 'continue'
 
 function Invoke-CIStep(
-[String[]]
-[ValidateCount(1,[Int]::MaxValue)]
+
+[String]
+[ValidateNotNullOrEmpty()]
 [Parameter(
     Mandatory=$true,
-    ValueFromPipelineByPropertyName = $true)]
-$IncludeNupkgFilePath,
+    ValueFromPipelineByPropertyName=$true)]
+$PoshCIProjectRootDirPath,
 
 [String[]]
 [Parameter(
     ValueFromPipelineByPropertyName = $true)]
-$ExcludeFileNameLike,
+$IncludeDllPath = @(gci -Path $PoshCIProjectRootDirPath -File -Recurse -Filter '*test*.dll' | ?{$_.FullName -notmatch '.*[/\\]packages|obj[/\\].*'} | %{$_.FullName}),
+
+[String[]]
+[Parameter(
+    ValueFromPipelineByPropertyName = $true)]
+$ExcludeDllNameLike,
 
 [switch]
 [Parameter(
@@ -22,43 +28,45 @@ $Recurse,
 [String]
 [Parameter(
     ValueFromPipelineByPropertyName = $true)]
-$SourceUrl = 'https://nuget.org/api/v2/',
+$TestCaseFilter,
 
 [String]
 [Parameter(
-    ValueFromPipelineByPropertyName = $true)]
-$ApiKey){
-    
-    $NupkgFilePaths = gci -Path $IncludeNupkgFilePath -Filter '*.nupkg' -File -Exclude $ExcludeFileNameLike -Recurse:$Recurse | ?{!$_.PSIsContainer} | %{$_.FullName}
+    ValueFromPipelineByPropertyName=$true)]
+$PathToVSTestConsoleExe = 'C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe'){
+
+   
+   $DllPaths = @(gci -Path $IncludeDllPath -Filter '*.dll' -File -Exclude $ExcludeDllNameLike -Recurse:$Recurse | ?{!$_.PSIsContainer} | %{$_.FullName})
         
 Write-Debug `
 @"
-`Located packages:
-$($NupkgFilePaths | Out-String)
+`Located dll's:
+$($DllPaths | Out-String)
 "@
 
-    foreach($nupkgFilePath in $NupkgFilePaths)
-    {
-        $nugetExecutable = 'nuget'
-        $nugetParameters = @('push',$nupkgFilePath,'-Source',$SourceUrl)
+    $vsTestConsoleParameters = $DllPaths
+    $vsTestConsoleParameters += '/InIsolation'
 
-        if($ApiKey){
-            $nugetParameters = $nugetParameters + @('-ApiKey',$ApiKey)
+    if($TestCaseFilter){
+            $vsTestConsoleParameters = $vsTestConsoleParameters + @('/TestCaseFilter',$TestCaseFilter)
         }
 
 Write-Debug `
 @"
-Invoking nuget:
-$nugetExecutable $($nugetParameters|Out-String)
+Invoking VSTest.Console.exe:
+$PathToVSTestConsoleExe $($vsTestConsoleParameters|Out-String)
 "@
-        & $nugetExecutable $nugetParameters
-        
-        # handle errors
-        if ($LastExitCode -ne 0) {
-            throw $Error
-        
-        }
+    $previousErrorActionPreference = $ErrorActionPreference
+    $ErrorActionPreference = 'continue'
 
+    & $PathToVSTestConsoleExe $vsTestConsoleParameters
+
+    $ErrorActionPreference = $previousErrorActionPreference
+        
+    # handle errors
+    if ($LastExitCode -ne 0) {
+        throw $Error
+       
     }
 
 }
