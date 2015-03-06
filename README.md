@@ -49,6 +49,16 @@ A String representing the `/TestCaseFilter` option of VSTest.Console.exe
 $TestCaseFilter
 ```
 
+#####PathToVSTestConsoleExe
+A String representing the path to VSTest.Console.exe
+```PowerShell
+[String]
+[Parameter(
+    Mandatory=$true,
+    ValueFromPipelineByPropertyName=$true)]
+$PathToVSTestConsoleExe
+```
+
 
 ####What's the build status?
 ![](https://ci.appveyor.com/api/projects/status/rcevsilgkskrk9wi?svg=true)
