@@ -12,7 +12,7 @@ Add-CIStep -Name "YOUR-CISTEP-NAME" -PackageId "InvokeVSTestConsole"
 
 #####IncludeDllPath
 A String[] representing included .dll file paths. Either literal or wildcard paths are supported; default is all .dlls 
-within your project root dir @ any depth containing test in their name.
+within your project root dir @ any depth containing `test` in their name not within a `packages` directory (case insensitive)
 ```PowerShell
 [String[]]
 [ValidateCount(1,[Int]::MaxValue)]
@@ -58,7 +58,6 @@ A String representing the path to VSTest.Console.exe
     ValueFromPipelineByPropertyName=$true)]
 $PathToVSTestConsoleExe
 ```
-
 
 ####What's the build status?
 ![](https://ci.appveyor.com/api/projects/status/rcevsilgkskrk9wi?svg=true)
