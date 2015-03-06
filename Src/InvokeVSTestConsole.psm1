@@ -43,7 +43,7 @@ $Logger,
 $PathToVSTestConsoleExe = 'C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe'){
 
    
-   $DllPaths = @(gci -Path $IncludeDllPath -Filter '*.dll' -File -Exclude $ExcludeDllNameLike -Recurse:$Recurse | ?{!$_.PSIsContainer} | %{$_.FullName})
+   $DllPaths = @(gci -Path $IncludeDllPath -Filter '*.dll' -File -Exclude $ExcludeDllNameLike -Recurse:$Recurse | %{$_.FullName})
         
 Write-Debug `
 @"
