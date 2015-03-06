@@ -54,9 +54,8 @@ A String representing the path to VSTest.Console.exe
 ```PowerShell
 [String]
 [Parameter(
-    Mandatory=$true,
     ValueFromPipelineByPropertyName=$true)]
-$PathToVSTestConsoleExe
+$PathToVSTestConsoleExe = 'C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe'
 ```
 
 ####What's the build status?
