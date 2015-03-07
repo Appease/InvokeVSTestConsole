@@ -57,6 +57,15 @@ A String representing the `/Logger` option of VSTest.Console.exe
 $Logger
 ```
 
+#####UseVSIXExtensions
+A Switch representing whether to pass the `/UseVSIXExtensions` option to VSTest.Console.exe
+```PowerShell
+[String]
+[Parameter(
+    ValueFromPipelineByPropertyName = $true)]
+$UseVSIXExtensions
+```
+
 #####PathToVSTestConsoleExe
 A String representing the path to VSTest.Console.exe
 ```PowerShell
