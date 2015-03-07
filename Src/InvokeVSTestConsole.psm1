@@ -59,11 +59,11 @@ $($DllPaths | Out-String)
     $vsTestConsoleParameters = @($DllPaths, '/InIsolation')
 
     if($TestCaseFilter){
-            $vsTestConsoleParameters += @('/TestCaseFilter', $TestCaseFilter)
+            $vsTestConsoleParameters += @("/TestCaseFilter:$TestCaseFilter")
     }
 
     if($Logger){
-        $vsTestConsoleParameters += @('/Logger', $Logger)
+        $vsTestConsoleParameters += @("/Logger:$Logger")
     }
 
     if($UseVsixExtensions.IsPresent){
