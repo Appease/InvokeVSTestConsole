@@ -39,7 +39,7 @@ $Logger,
 [Switch]
 [Parameter(
     ValueFromPipelineByPropertyName = $true)]
-$UseVSIXExtensions ,
+$UseVsixExtensions ,
 
 [String]
 [ValidateNotNullOrEmpty()]
@@ -66,8 +66,8 @@ $($DllPaths | Out-String)
         $vsTestConsoleParameters += @('/Logger', $Logger)
     }
 
-    if($UseVSIXExtensions.IsPresent){
-        $vsTestConsoleParameters += @('/UseVSIXExtensions')
+    if($UseVsixExtensions.IsPresent){
+        $vsTestConsoleParameters += @('/UseVsixExtensions:true')
     }
 
 Write-Debug `
