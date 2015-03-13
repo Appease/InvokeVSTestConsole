@@ -56,7 +56,8 @@ Write-Debug `
 $($DllPaths | Out-String)
 "@
 
-    $vsTestConsoleParameters = @($DllPaths, '/InIsolation')
+    $vsTestConsoleParameters += $DllPaths
+    $vsTestConsoleParameters += '/InIsolation'
 
     if($TestCaseFilter){
             $vsTestConsoleParameters += @("/TestCaseFilter:$TestCaseFilter")
