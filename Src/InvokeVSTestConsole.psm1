@@ -1,20 +1,20 @@
 # halt immediately on any errors which occur in this module
 $ErrorActionPreference = 'stop'
 
-function Invoke-CIStep(
+function Invoke-PoshDevOpsTask(
 
 [String]
 [ValidateNotNullOrEmpty()]
 [Parameter(
     Mandatory=$true,
     ValueFromPipelineByPropertyName=$true)]
-$PoshCIProjectRootDirPath,
+$PoshDevOpsProjectRootDirPath,
 
 [String[]]
 [ValidateCount(1,[Int]::MaxValue)]
 [Parameter(
     ValueFromPipelineByPropertyName = $true)]
-$IncludeDllPath = @(gci -Path $PoshCIProjectRootDirPath -File -Recurse -Filter '*test*.dll' | ?{$_.FullName -notmatch '.*[/\\]packages|obj[/\\].*'}|%{$_.FullName}),
+$IncludeDllPath = @(gci -Path $PoshDevOpsProjectRootDirPath -File -Recurse -Filter '*test*.dll' | ?{$_.FullName -notmatch '.*[/\\]packages|obj[/\\].*'}|%{$_.FullName}),
 
 [String[]]
 [Parameter(
@@ -91,4 +91,4 @@ $PathToVSTestConsoleExe $($vsTestConsoleParameters|Out-String)
 
 }
 
-Export-ModuleMember -Function Invoke-CIStep
+Export-ModuleMember -Function Invoke-PoshDevOpsTask

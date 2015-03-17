@@ -6,10 +6,10 @@
 		<authors>Chris Dostert</authors>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>
-			A PoshCI step that invokes VSTest.Console.exe
+			A PoshDevOps task that invokes VSTest.Console.exe
 		</description>
-		<tags>Powershell PoshCI VSTest MSTest TestRunner</tags>
-		<projectUrl>https://github.com/PoshCI/InvokeVSTestConsole</projectUrl>
+		<tags>Powershell PoshDevOps VSTest MSTest TestRunner</tags>
+		<projectUrl>https://github.com/PoshDevOps/InvokeVSTestConsole</projectUrl>
 	</metadata>	
 	<files>
 		<file src="**" target="tools\InvokeVSTestConsole" exclude="**\.nuspec"/>

@@ -1,11 +1,11 @@
 ####What is it?
 
-A [PoshCI](https://github.com/PoshCI/PoshCI) step that invokes [VSTest.Console.exe](https://msdn.microsoft.com/en-us/library/jj155796.aspx)
+A [PoshDevOps](https://github.com/PoshDevOps/PoshDevOps) step that invokes [VSTest.Console.exe](https://msdn.microsoft.com/en-us/library/jj155796.aspx)
 
 ####How do I install it?
 
 ```PowerShell
-Add-CIStep -Name "YOUR-CISTEP-NAME" -PackageId "InvokeVSTestConsole"
+Add-PoshDevOpsTask -Name "YOUR-CISTEP-NAME" -PackageId "InvokeVSTestConsole"
 ```
 
 ####What parameters are available?
@@ -18,7 +18,7 @@ within your project root dir @ any depth containing `test` in their name not wit
 [ValidateCount(1,[Int]::MaxValue)]
 [Parameter(
     ValueFromPipelineByPropertyName = $true)]
-$IncludeDllPath = @(gci -Path $PoshCIProjectRootDirPath -File -Recurse -Filter '*test*.dll' | ?{$_.FullName -notmatch '.*[/\\]packages|obj[/\\].*'}|%{$_.FullName})
+$IncludeDllPath = @(gci -Path $PoshDevOpsProjectRootDirPath -File -Recurse -Filter '*test*.dll' | ?{$_.FullName -notmatch '.*[/\\]packages|obj[/\\].*'}|%{$_.FullName})
 ```
 
 #####ExcludeDllNameLike
