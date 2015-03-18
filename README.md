@@ -77,5 +77,5 @@ $PathToVSTestConsoleExe = 'C:\Program Files (x86)\Microsoft Visual Studio 14.0\C
 ```
 
 ####What's the build status?
-![](https://ci.appveyor.com/api/projects/status/81pqdw3vjerogopc?svg=true)
+![](https://ci.appveyor.com/api/projects/status/qcsvd9rs60tb3lpt?svg=true)
 
