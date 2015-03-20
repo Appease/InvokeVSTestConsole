@@ -5,7 +5,7 @@ A [PoshDevOps](https://github.com/PoshDevOps/PoshDevOps) task that invokes [VSTe
 ####How do I install it?
 
 ```PowerShell
-Add-PoshDevOpsTask -Name "YOUR-CISTEP-NAME" -PackageId "InvokeVSTestConsole"
+Add-PoshDevOpsTask -Name "YOUR-TASK-NAME" -PackageId "InvokeVSTestConsole"
 ```
 
 ####What parameters are available?

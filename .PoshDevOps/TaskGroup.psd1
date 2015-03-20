@@ -8,7 +8,7 @@
 		PushPoshDevOpsPackage = [PSCustomObject]@{
 			Name = [String]"PushPoshDevOpsPackage"; 
 			PackageId = [String]"PushPoshDevOpsPackage"; 
-			PackageVersion = [String]"0.0.15"; 
+			PackageVersion = [String]"0.0.20"; 
 			Parameters = [Hashtable]@{
 				IncludeNupkgFilePath = [String[]]@(
 					[String]".\*"
