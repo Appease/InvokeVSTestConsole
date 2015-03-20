@@ -6,7 +6,7 @@
 		<authors>Chris Dostert</authors>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>
-			A PoshDevOps task that invokes VSTest.Console.exe
+			A Poshtask that invokes VSTest.Console.exe
 		</description>
 		<tags>Powershell PoshDevOps VSTest MSTest TestRunner</tags>
 		<projectUrl>https://github.com/PoshDevOps/InvokeVSTestConsole</projectUrl>

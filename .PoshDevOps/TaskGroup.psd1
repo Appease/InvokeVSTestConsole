@@ -1,5 +1,5 @@
 [PSCustomObject]@{
-	Steps = [Ordered]@{
+	Tasks = [Ordered]@{
 		CreatePoshDevOpsPackage = [PSCustomObject]@{
 			Name = [String]"CreatePoshDevOpsPackage"; 
 			PackageId = [String]"CreatePoshDevOpsPackage"; 

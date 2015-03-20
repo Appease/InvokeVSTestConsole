@@ -1,6 +1,6 @@
 ####What is it?
 
-A [PoshDevOps](https://github.com/PoshDevOps/PoshDevOps) step that invokes [VSTest.Console.exe](https://msdn.microsoft.com/en-us/library/jj155796.aspx)
+A [PoshDevOps](https://github.com/PoshDevOps/PoshDevOps) task that invokes [VSTest.Console.exe](https://msdn.microsoft.com/en-us/library/jj155796.aspx)
 
 ####How do I install it?
 
