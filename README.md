@@ -37,4 +37,4 @@ description: a `switch` representing whether to pass the `/UseVsixExtensions` op
 
 #####PathToVSTestConsoleExe
 description: a `string` representing the path to VSTest.Console.exe.  
-default: 'C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe'
+default: `C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe`
