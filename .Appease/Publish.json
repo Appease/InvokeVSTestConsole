@@ -1,0 +1,23 @@
+{
+    "Name":  "Publish",
+    "Tasks":  [
+                  {
+                      "TemplateId":  "PublishAppeaseTaskTemplate",
+                      "Name":  "Publish to official Appease feed",
+                      "TemplateVersion":  "0.0.12",
+                      "Parameters":  {
+                                         "ProjectUrl":  "https://github.com/Appease/InvokeVSTestConsole",
+                                         "Id":  "InvokeVSTestConsole",
+                                         "IconUrl":  "http://res.cloudinary.com/hibczhd9m/image/upload/c_crop,w_350/v1423785217/NuGet.org/5711875.png",
+                                         "Description":  "Invokes VSTest.Console.exe",
+                                         "Contributor":  {
+                                                             "Name":  "Chris Dostert"
+                                                         },
+                                         "File":  {
+                                                      "Include":  "Src\\InvokeVSTestConsole.psm1",
+                                                      "Destination":  "InvokeVSTestConsole"
+                                                  }
+                                     }
+                  }
+              ]
+}

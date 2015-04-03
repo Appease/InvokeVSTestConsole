@@ -1,20 +1,20 @@
 # halt immediately on any errors which occur in this module
 $ErrorActionPreference = 'stop'
 
-function Invoke-PoshDevOpsTask(
+function Invoke(
 
 [String]
 [ValidateNotNullOrEmpty()]
 [Parameter(
     Mandatory=$true,
     ValueFromPipelineByPropertyName=$true)]
-$PoshDevOpsProjectRootDirPath,
+$AppeaseProjectRootDirPath,
 
 [String[]]
 [ValidateCount(1,[Int]::MaxValue)]
 [Parameter(
     ValueFromPipelineByPropertyName = $true)]
-$IncludeDllPath = @(gci -Path $PoshDevOpsProjectRootDirPath -File -Recurse -Filter '*test*.dll' | ?{$_.FullName -notmatch '.*[/\\]packages|obj[/\\].*'}|%{$_.FullName}),
+$IncludeDllPath = @(gci -Path $AppeaseProjectRootDirPath -File -Recurse -Filter '*test*.dll' | ?{$_.FullName -notmatch '.*[/\\]packages|obj[/\\].*'}|%{$_.FullName}),
 
 [String[]]
 [Parameter(
@@ -56,32 +56,32 @@ Write-Debug `
 $($DllPaths | Out-String)
 "@
 
-    $vsTestConsoleParameters += $DllPaths
-    $vsTestConsoleParameters += '/InIsolation'
+    $VSTestConsoleParameters += $DllPaths
+    $VSTestConsoleParameters += '/InIsolation'
 
     if($TestCaseFilter){
-            $vsTestConsoleParameters += @("/TestCaseFilter:$TestCaseFilter")
+            $VSTestConsoleParameters += @("/TestCaseFilter:$TestCaseFilter")
     }
 
     if($Logger){
-        $vsTestConsoleParameters += @("/Logger:$Logger")
+        $VSTestConsoleParameters += @("/Logger:$Logger")
     }
 
     if($UseVsixExtensions.IsPresent){
-        $vsTestConsoleParameters += @('/UseVsixExtensions:true')
+        $VSTestConsoleParameters += @('/UseVsixExtensions:true')
     }
 
 Write-Debug `
 @"
 Invoking VSTest.Console.exe:
-$PathToVSTestConsoleExe $($vsTestConsoleParameters|Out-String)
+$PathToVSTestConsoleExe $($VSTestConsoleParameters|Out-String)
 "@
-    $previousErrorActionPreference = $ErrorActionPreference
+    $OriginalErrorActionPreference = $ErrorActionPreference
     $ErrorActionPreference = 'continue'
 
-    & $PathToVSTestConsoleExe $vsTestConsoleParameters
+    & $PathToVSTestConsoleExe $VSTestConsoleParameters
 
-    $ErrorActionPreference = $previousErrorActionPreference
+    $ErrorActionPreference = $OriginalErrorActionPreference
         
     # handle errors
     if ($LastExitCode -ne 0) {
@@ -91,4 +91,4 @@ $PathToVSTestConsoleExe $($vsTestConsoleParameters|Out-String)
 
 }
 
-Export-ModuleMember -Function Invoke-PoshDevOpsTask
+Export-ModuleMember -Function Invoke
